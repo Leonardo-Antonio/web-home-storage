@@ -1,0 +1,44 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { CardImage } from "../components/CardImage/CardImage";
+import { CardVideo } from "../components/CardVideo/CardVideo";
+import { BtnUploadFiles } from "../components/Buttons/UploadFiles";
+export interface Response {
+  success: boolean;
+  data: any;
+  itemFound: boolean;
+  timestamp: number;
+}
+
+const urlUpload = `${import.meta.env.API_SERVER_FILE}/v1/files/upload/leo`
+const res = await fetch(`${import.meta.env.API_SERVER_FILE}/v1/directory/structure/users/leo`);
+const data: Response = await res.json();
+---
+
+<Layout title="Storage">
+  <div>
+    <h1 class="text-7xl font-bold text-center pt-5 pb-5">
+      <span class="text-white">Bienvenido</span>
+      <span class="text-blue-500"> Leonardo</span>
+    </h1>
+
+    <BtnUploadFiles client:load urlUpload={urlUpload} />
+
+    {
+      data.data.children.at(0).children.map((res: any) => (
+        <>
+          <h3 class="text-white text-3xl font-bold">{res.name}:</h3>
+          <div class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            {res.name == "images"
+              ? res.children?.map((c: any) => (
+                  <CardImage client:load name={c.name} />
+                ))
+              : res.children?.map((c: any) => (
+                  <CardVideo client:load name={c.name} />
+                ))}
+          </div>
+        </U>
+      ))
+    }
+  </div>
+</Layout>

@@ -1,0 +1,6 @@
+img {
+  width: 200px; /* Tamaño máximo del contenedor */
+  height: 260px !important;
+  object-fit: contain; /* Opción de object-fit */
+  background-color: rgba(0, 0, 0, 0.199);
+}
