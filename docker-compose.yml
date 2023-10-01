@@ -1,0 +1,10 @@
+version: '3'
+services:
+  web-home-storage:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000" # Mapear el puerto del contenedor al puerto del host
+    volumes:
+      - .:/app # Mapear el directorio de trabajo actual al contenedor
