@@ -17,12 +17,19 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <main class="min-h-screen flex items-center justify-center">
+    <main class="min-h-screen flex items-center justify-center p-2">
       <slot />
     </main>
   </body>
 </html>
 <style is:global>
+    /* global.css */
+  @import 'tailwindcss/base';
+  @import 'tailwindcss/components';
+  @import 'tailwindcss/utilities';
+  /* Agrega otros estilos personalizados si es necesario */
+
+
   :root {
     --accent: 136, 58, 234;
     --accent-light: 224, 204, 250;
