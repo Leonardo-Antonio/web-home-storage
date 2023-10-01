@@ -29,7 +29,7 @@ export const BtnUploadFiles = ({urlUpload}: {urlUpload: string}) => {
       }
   }
   return (
-    <div onClick={handlerOpenDialogFiles} className="absolute bottom-0 right-0 rounded-full bg-blue-700 p-6 m-4 cursor-pointer hover:scale-105 transition-all">
+    <div onClick={handlerOpenDialogFiles} className="bottom-0 right-0 rounded-full bg-blue-700 p-6 m-4 cursor-pointer hover:scale-105 transition-all flex justify-center">
       <input type="file" multiple className="hidden" id="files" onChange={handlerUploadFiles} />
       <svg
         xmlns="http://www.w3.org/2000/svg"
