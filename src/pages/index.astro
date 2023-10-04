@@ -1,54 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { CardImage } from "../components/CardImage/CardImage";
-import { CardVideo } from "../components/CardVideo/CardVideo";
-import { BtnUploadFiles } from "../components/Buttons/UploadFiles";
-export interface Response {
-  success: boolean;
-  data: any;
-  itemFound: boolean;
-  timestamp: number;
-}
-
-const urlUpload = `${import.meta.env.API_SERVER_FILE}/v1/files/upload/leo`;
-const res = await fetch(
-  `${import.meta.env.API_SERVER_FILE}/v1/directory/structure/users/leo`
-);
-const data: Response = await res.json();
+import { Auth } from "../components/Form/Auth";
 ---
 
-<Layout title="Storage">
-  <div>
-    <h1 class="text-7xl font-bold text-center pt-5 pb-5">
-      <span class="text-white">Bienvenido</span>
-      <span class="text-blue-500"> Leonardo</span>
-    </h1>
-
-    <BtnUploadFiles client:load urlUpload={urlUpload} />
-
-    {
-      data.data.children.at(0).children.map((res: any) => (
-        <>
-          <h3 class="text-white text-3xl font-bold">{res.name}:</h3>
-          <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {res.name == "images"
-              ? res.children?.map((c: any) => (
-                  <CardImage client:load name={c.name} />
-                ))
-              : res.children?.map((c: any) => (
-                  <CardVideo client:load name={c.name} />
-                ))}
-          </div>
-        </>
-      ))
-    }
+<Layout title="Authorization">
+  <div class="w-full max-w-xs">
+    <Auth client:only />
+    <p class="text-center text-gray-500 text-xs">
+      &copy;2024 GeneralCsaz. All rights reserved.
+    </p>
   </div>
 </Layout>
-
-<style>
-@media screen and (max-width: 768px) {
-    .grid-cols-1 {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-</style>
