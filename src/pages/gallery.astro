@@ -13,6 +13,7 @@ export interface Response {
 }
 
 const urlUpload = `${import.meta.env.API_SERVER_FILE}/v1/files/upload/leo`;
+const urlBaseServerFile = `${import.meta.env.API_SERVER_FILE}/v1/files`;
 const res = await fetch(
   `${import.meta.env.API_SERVER_FILE}/v1/directory/structure/users/leo`
 );
@@ -36,7 +37,7 @@ const data: Response = await res.json();
             <div class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {res.name == "images"
                 ? res.children?.map((c: any) => (
-                    <CardImage client:load name={c.name} />
+                    <CardImage client:load name={c.name} urlBaseServerFile={urlBaseServerFile} />
                   ))
                 : res.children?.map((c: any) => (
                     <CardVideo client:load name={c.name} />
